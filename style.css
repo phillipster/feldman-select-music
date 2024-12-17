@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    padding: 5vw;
+    font-size: 2vw;
+}
+
+#outputGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5vw;
+    max-width: 50em;
+}
+
+#outputGrid>a {
+    color: #000;
+    text-decoration: none;
+    border: 5px solid rgba(0,0,0,0.1);
+    padding: 1.25vw;
+    transition: background-color 0.25s;
+    border-radius: 3px;
+}
+
+#pageTitle {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#outputGrid>a:hover {
+    background-color: rgba(57, 171, 213, 0.1);
+}
+
+.thumbnail {
+    width: 100%;
+    border-radius: 3px;
+    display: flex;
+}
+.projectHeroImage {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 2.5vw;
+    border-radius: 1em;
+    display: flex;
+}
+
+.description {
+    line-height: 2em;
+}
