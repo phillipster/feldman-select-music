@@ -35,6 +35,17 @@ body {
     background-color: rgba(57, 171, 213, 0.1);
 }
 
+.previewTitle {
+    font-size: 16pt;
+    padding: 0.5em
+}
+
+.info {
+    font-weight: bold;
+    font-size: 20pt;
+    padding: 0.5em
+}
+
 .thumbnail {
     width: 100%;
     border-radius: 3px;

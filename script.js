@@ -171,6 +171,13 @@ function createProjectPage(incomingJSON) {
     newProjectImage.src = incomingJSON["cover"];
     newProjectElement.appendChild(newProjectImage);
 
+    let newProjectYear = document.createElement("P");
+    newProjectYear.classList.add("info");
+    newProjectYear.innerText =
+        "Year released: " + incomingJSON["year"] + "\n" +
+        "Genre: " + incomingJSON["genre"];
+    newProjectElement.appendChild(newProjectYear);
+
     let newProjectDescription = document.createElement("P");
     newProjectDescription.classList.add("description");
     newProjectDescription.innerText = incomingJSON["description"];
