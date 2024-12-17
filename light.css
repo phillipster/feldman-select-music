@@ -4,6 +4,17 @@
     margin: 0;
 }
 
+#switch {
+    border: none;
+    background-color: lightgray;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 body {
     font-family: sans-serif;
     padding: 5vw;
@@ -13,7 +24,7 @@ body {
 #outputGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5vw;
+    gap: 1em;
     max-width: 50em;
 }
 
@@ -28,7 +39,7 @@ body {
 
 #pageTitle {
     font-weight: bold;
-    margin-bottom: 1em;
+    margin: 1em;
 }
 
 #outputGrid>a:hover {
@@ -51,12 +62,13 @@ body {
     border-radius: 3px;
     display: flex;
 }
-.projectHeroImage {
-    width: 40%;
+.generatedImage {
+    justify-self: center;
+    width: 50%;
     height: 100%;
     object-fit: cover;
     margin-bottom: 2.5vw;
-    border-radius: 1em;
+    border-radius: 0.5em;
     display: flex;
 }
 

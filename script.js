@@ -1,6 +1,6 @@
-let pageTitleElem;
-let outputGridElem;
-let projectDisplayElem;
+let pageTitle;
+let outputGrid;
+let albumDisplay;
 
 let albums = [
     {
@@ -103,9 +103,9 @@ let albums = [
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    pageTitleElem = document.getElementById("pageTitle");
-    outputGridElem = document.getElementById("outputGrid");
-    projectDisplayElem = document.getElementById("projectDisplay");
+    pageTitle = document.getElementById("pageTitle");
+    outputGrid = document.getElementById("outputGrid");
+    albumDisplay = document.getElementById("projectDisplay");
 
     let queryString = window.location.search;
     let urlParams = new URLSearchParams(queryString);
@@ -113,32 +113,33 @@ document.addEventListener("DOMContentLoaded", function(){
     let urlID = urlParams.get('id');
 
     if (urlSection !== "item") { /* Display project previews in grid */
-
-        if (urlSection === "code") {
-            pageTitleElem.innerText = "Code Projects:";
-        }
-        else if (urlSection === "art") {
-            pageTitleElem.innerText = "Art Projects:";
-        }
-
         for (let i = 0; i < albums.length; i++) {
-            createProjectPreview(albums[i]);
+            createAlbumPreview(albums[i]);
         }
-
     }
 
     for (let i = 0; i < albums.length; i++) {
         if (albums[i]["id"] === urlID) {
-            createProjectPage(albums[i]);
+            createAlbumPage(albums[i]);
         }
     }
 
 
 });
 
+let count = 0;
+let themes = ["light.css", "dark.css"];
 
+$("button[data-theme]").click(function() {
+    if (count % 2 === 0) {
+        $("head link#theme").attr("href", themes[1]);
+    } else {
+        $("head link#theme").attr("href", themes[0]);
+    }
+    ++count;
+});
 
-function createProjectPreview(incomingJSON){
+function createAlbumPreview(incomingJSON){
 
     let newPreviewLink = document.createElement("A");
     newPreviewLink.href = "index.html?section=item&id=" + incomingJSON["id"];
@@ -156,33 +157,38 @@ function createProjectPreview(incomingJSON){
     newPreviewThumbnail.src = incomingJSON["cover"];
     newPreviewElement.appendChild(newPreviewThumbnail);
 
-    outputGridElem.appendChild(newPreviewLink);
+    outputGrid.appendChild(newPreviewLink);
 
 }
 
-function createProjectPage(incomingJSON) {
+function createAlbumPage(incomingJSON) {
 
-    pageTitleElem.innerText = incomingJSON["title"];
 
-    let newProjectElement = document.createElement("DIV");
+    console.log(count);
 
-    let newProjectImage = document.createElement("IMG");
-    newProjectImage.classList.add("projectHeroImage");
-    newProjectImage.src = incomingJSON["cover"];
-    newProjectElement.appendChild(newProjectImage);
+    pageTitle.innerText = incomingJSON["title"];
 
-    let newProjectYear = document.createElement("P");
-    newProjectYear.classList.add("info");
-    newProjectYear.innerText =
-        "Year released: " + incomingJSON["year"] + "\n" +
-        "Genre: " + incomingJSON["genre"];
-    newProjectElement.appendChild(newProjectYear);
+    let albumPage = document.createElement("DIV");
 
-    let newProjectDescription = document.createElement("P");
-    newProjectDescription.classList.add("description");
-    newProjectDescription.innerText = incomingJSON["description"];
-    newProjectElement.appendChild(newProjectDescription);
+    let artwork = document.createElement("IMG");
+    artwork.classList.add("generatedImage");
+    artwork.src = incomingJSON["cover"];
+    albumPage.appendChild(artwork);
 
-    projectDisplayElem.appendChild(newProjectElement);
+    let description = document.createElement("P");
+    description.classList.add("info");
+    description.innerText;
+    albumPage.appendChild(description);
+
+    let details = document.createElement("P");
+    details.classList.add("description");
+    details.innerText = incomingJSON["description"];
+    albumPage.appendChild(details);
+
+    albumDisplay.appendChild(albumPage);
+
+    $('img').on('load', function () {
+        console.log('album page image load successful');
+    });
 
 }
